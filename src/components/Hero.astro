@@ -1,5 +1,6 @@
 ---
 // Hero component
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <section class="hero" data-parallax="0.3">
@@ -8,16 +9,16 @@
 		<p class="hero-subtitle" data-i18n="hero.subtitle">Desarrollador Full Stack Junior especializado en crear soluciones tecnológicas innovadoras</p>
 		<div class="hero-tech">
 			<div class="tech-logo" title="AWS">
-				<img src="/logos/aws.png" alt="AWS" />
+				<img src={`${baseUrl}logos/aws.png`} alt="AWS" />
 			</div>
 			<div class="tech-logo" title="TypeScript">
-				<img src="/logos/typescript.png" alt="TypeScript" />
+				<img src={`${baseUrl}logos/typescript.png`} alt="TypeScript" />
 			</div>
 			<div class="tech-logo" title="Java">
-				<img src="/logos/java.png" alt="Java" />
+				<img src={`${baseUrl}logos/java.png`} alt="Java" />
 			</div>
 			<div class="tech-logo angular-logo" title="Angular">
-				<img src="/logos/angular.png" alt="Angular" />
+				<img src={`${baseUrl}logos/angular.png`} alt="Angular" />
 			</div>
 			<div class="tech-logo" title="GitHub">
 				<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +29,7 @@
 		<div class="hero-buttons">
 			<a href="/projects" class="btn btn-primary" data-i18n="hero.btnProjects">Ver Proyectos</a>
 			<a href="#contact" class="btn btn-secondary" data-i18n="hero.btnContact">Contactar</a>
-			<a href="/cv.pdf" download="CV_Santiago_Munoz.pdf" class="btn btn-tertiary">
+			<a href={`${baseUrl}cv.pdf`} download="CV_Santiago_Munoz.pdf" class="btn btn-tertiary">
 				<svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px; margin-right: 8px;">
 					<path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
 				</svg>
