@@ -1,0 +1,113 @@
+---
+// Scroll to Top Button
+---
+
+<button class="scroll-to-top" id="scroll-to-top" aria-label="Volver arriba">
+	<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+		<path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+	</svg>
+</button>
+
+<script>
+	const scrollButton = document.getElementById('scroll-to-top');
+	
+	function toggleScrollButton() {
+		if (window.pageYOffset > 300) {
+			scrollButton?.classList.add('visible');
+		} else {
+			scrollButton?.classList.remove('visible');
+		}
+	}
+
+	scrollButton?.addEventListener('click', () => {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		});
+	});
+
+	window.addEventListener('scroll', toggleScrollButton);
+	toggleScrollButton(); // Verificar estado inicial
+</script>
+
+<style>
+	.scroll-to-top {
+		position: fixed;
+		bottom: calc(2rem + 50px + 0.75rem);
+		left: 2rem;
+		width: 50px;
+		height: 50px;
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		border: none;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(20px);
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		z-index: 997;
+		box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+		color: white;
+	}
+
+	.scroll-to-top.visible {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+
+	.scroll-to-top:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 6px 30px rgba(102, 126, 234, 0.6);
+	}
+
+	.scroll-to-top:active {
+		transform: translateY(-2px);
+	}
+
+	.scroll-to-top svg {
+		width: 24px;
+		height: 24px;
+	}
+
+	/* Light Theme */
+	:global([data-theme="light"]) .scroll-to-top {
+		box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+	}
+
+	:global([data-theme="light"]) .scroll-to-top:hover {
+		box-shadow: 0 6px 30px rgba(102, 126, 234, 0.5);
+	}
+
+	@media (max-width: 768px) {
+		.scroll-to-top {
+			width: 48px;
+			height: 48px;
+			bottom: calc(1rem + 48px + 0.75rem);
+			left: 1.5rem;
+		}
+
+		.scroll-to-top svg {
+			width: 22px;
+			height: 22px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.scroll-to-top {
+			width: 44px;
+			height: 44px;
+			bottom: calc(0.75rem + 44px + 0.75rem);
+			left: 1rem;
+		}
+
+		.scroll-to-top svg {
+			width: 20px;
+			height: 20px;
+		}
+	}
+</style>
+

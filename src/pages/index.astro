@@ -1,11 +1,40 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Experience from '../components/Experience.astro';
+import Education from '../components/Education.astro';
+import Certifications from '../components/Certifications.astro';
+import Stats from '../components/Stats.astro';
+import Achievements from '../components/Achievements.astro';
+import Languages from '../components/Languages.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import Particles from '../components/Particles.astro';
+import ScrollProgress from '../components/ScrollProgress.astro';
+import ScrollToTop from '../components/ScrollToTop.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import ShareButtons from '../components/ShareButtons.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Inicio">
+	<Particles />
+	<ScrollProgress />
+	<Navbar />
+	<Hero />
+	<About />
+	<Stats />
+	<Experience />
+	<Education />
+	<Certifications />
+	<Achievements />
+	<Languages />
+	<Contact />
+	<Footer />
+	<WhatsAppButton />
+	<ShareButtons />
+	<ScrollToTop />
+	<ThemeToggle />
 </Layout>

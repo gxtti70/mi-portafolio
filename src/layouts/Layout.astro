@@ -1,22 +1,135 @@
+---
+import '../styles/animations.css';
+import '../styles/print.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+}
+
+const { 
+	title = 'Portafolio - Santiago Muñoz Sánchez',
+	description = 'Desarrollador Full Stack Junior especializado en Java, Angular, TypeScript, AWS y desarrollo de soluciones tecnológicas innovadoras.',
+	image = '/favicon.svg'
+} = Astro.props;
+
+const siteUrl = 'https://tu-portafolio.com'; // Actualizar con tu URL real
+---
 <!doctype html>
-<html lang="en">
+<html lang="es" data-theme="dark">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		
+		<!-- Primary Meta Tags -->
+		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<meta name="keywords" content="Desarrollador Full Stack, Java, Angular, TypeScript, AWS, React, Node.js, Programador, Desarrollador Web" />
+		<meta name="author" content="Santiago Muñoz Sánchez" />
+		<meta name="robots" content="index, follow" />
+		<meta name="language" content="Spanish" />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={siteUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={`${siteUrl}${image}`} />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={siteUrl} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={`${siteUrl}${image}`} />
+		
+		<!-- Theme Color -->
+		<meta name="theme-color" content="#667eea" />
+		<meta name="msapplication-TileColor" content="#667eea" />
 	</head>
 	<body>
 		<slot />
+		<script src="/i18n.js" defer></script>
+		<script src="/animations.js" defer></script>
 	</body>
 </html>
 
 <style>
+	html {
+		scroll-behavior: smooth;
+	}
+
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+		transition: background-color 0.3s ease, color 0.3s ease;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	/* iOS safe area support */
+	@supports (padding: max(0px)) {
+		body {
+			padding-left: env(safe-area-inset-left);
+			padding-right: env(safe-area-inset-right);
+		}
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	/* Dark Theme (Default) */
+	html[data-theme="dark"],
+	html[data-theme="dark"] body {
+		background: #0a0a0a;
+		color: #e5e5e5;
+	}
+
+	html[data-theme="dark"] body::before {
+		content: '';
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: 
+			radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+			radial-gradient(circle at 80% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+			radial-gradient(circle at 40% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+		z-index: -1;
+		pointer-events: none;
+	}
+
+	/* Light Theme */
+	html[data-theme="light"],
+	html[data-theme="light"] body {
+		background: #f5f5f5;
+		color: #1a1a1a;
+	}
+
+	html[data-theme="light"] body::before {
+		content: '';
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: 
+			radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.08) 0%, transparent 50%),
+			radial-gradient(circle at 80% 80%, rgba(120, 119, 198, 0.05) 0%, transparent 50%),
+			radial-gradient(circle at 40% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+		z-index: -1;
+		pointer-events: none;
 	}
 </style>

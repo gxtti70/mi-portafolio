@@ -1,0 +1,151 @@
+/* Scroll Animations - Los elementos son visibles por defecto */
+.fade-in {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Aplicar animación solo cuando JavaScript agrega la clase inicial */
+.js-enabled .fade-in {
+	opacity: 0;
+	transform: translateY(30px);
+	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.js-enabled .fade-in.animate-in {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.slide-in-up {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.js-enabled .slide-in-up {
+	opacity: 0;
+	transform: translateY(50px);
+	transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.js-enabled .slide-in-up.animate-in {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.slide-in-left {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.js-enabled .slide-in-left {
+	opacity: 0;
+	transform: translateX(-50px);
+	transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.js-enabled .slide-in-left.animate-in {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.slide-in-right {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.js-enabled .slide-in-right {
+	opacity: 0;
+	transform: translateX(50px);
+	transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.js-enabled .slide-in-right.animate-in {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.scale-in {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.js-enabled .scale-in {
+	opacity: 0;
+	transform: scale(0.9);
+	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.js-enabled .scale-in.animate-in {
+	opacity: 1;
+	transform: scale(1);
+}
+
+/* Stagger animations for children - visibles por defecto */
+.stagger-children > * {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.js-enabled .stagger-children > * {
+	opacity: 0;
+	transform: translateY(30px);
+	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.js-enabled .stagger-children.animate-in > *:nth-child(1) {
+	transition-delay: 0.1s;
+}
+
+.js-enabled .stagger-children.animate-in > *:nth-child(2) {
+	transition-delay: 0.2s;
+}
+
+.js-enabled .stagger-children.animate-in > *:nth-child(3) {
+	transition-delay: 0.3s;
+}
+
+.js-enabled .stagger-children.animate-in > *:nth-child(4) {
+	transition-delay: 0.4s;
+}
+
+.js-enabled .stagger-children.animate-in > *:nth-child(5) {
+	transition-delay: 0.5s;
+}
+
+.js-enabled .stagger-children.animate-in > *:nth-child(6) {
+	transition-delay: 0.6s;
+}
+
+.js-enabled .stagger-children.animate-in > * {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Parallax effect */
+[data-parallax] {
+	will-change: transform;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button, .btn, .tech-logo, .project-card, .certification-card, .education-card, .timeline-content {
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+	.fade-in,
+	.slide-in-up,
+	.slide-in-left,
+	.slide-in-right,
+	.scale-in,
+	.stagger-children > * {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+	
+	[data-parallax] {
+		transform: none !important;
+	}
+}
+

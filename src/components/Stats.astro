@@ -1,0 +1,246 @@
+---
+// Stats component
+---
+
+<section id="stats" class="stats">
+	<div class="stats-container">
+		<h2 class="section-title fade-in" data-i18n="stats.title">Estadísticas</h2>
+		<div class="stats-grid stagger-children">
+			<div class="stat-card scale-in">
+				<div class="stat-icon">
+					<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+					</svg>
+				</div>
+				<div class="stat-number" data-target="6">0</div>
+				<div class="stat-label" data-i18n="stats.certifications">Certificaciones</div>
+			</div>
+			<div class="stat-card scale-in">
+				<div class="stat-icon">
+					<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+					</svg>
+				</div>
+				<div class="stat-number" data-target="20">0</div>
+				<div class="stat-label" data-i18n="stats.technologies">Tecnologías</div>
+			</div>
+			<div class="stat-card scale-in">
+				<div class="stat-icon">
+					<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path d="M20 6h-2.18c.11-.31.18-.65.18-1a2.996 2.996 0 0 0-5.5-1.65l-.5.67-.5-.68C10.96 2.54 10 2 10 2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/>
+					</svg>
+				</div>
+				<div class="stat-number" data-target="0.5">0</div>
+				<div class="stat-label" data-i18n="stats.experience">Años de Experiencia</div>
+			</div>
+			<div class="stat-card scale-in">
+				<div class="stat-icon">
+					<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"/>
+					</svg>
+				</div>
+				<div class="stat-number" data-target="100">0</div>
+				<div class="stat-label" data-i18n="stats.dedication">% Dedicación</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	function animateCounter(element: HTMLElement) {
+		const target = parseFloat(element.getAttribute('data-target') || '0');
+		const duration = 2000;
+		const increment = target / (duration / 16);
+		let current = 0;
+		
+		const updateCounter = () => {
+			current += increment;
+			if (current < target) {
+				// Mostrar decimales si el target es menor a 1
+				if (target < 1) {
+					element.textContent = current.toFixed(1);
+				} else {
+					element.textContent = Math.floor(current).toString();
+				}
+				requestAnimationFrame(updateCounter);
+			} else {
+				// Mostrar el valor final con formato apropiado
+				if (target < 1) {
+					element.textContent = target.toFixed(1);
+				} else {
+					element.textContent = target.toString();
+				}
+			}
+		};
+		
+		updateCounter();
+	}
+
+	// Observar cuando las estadísticas entran en vista
+	const statsObserver = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				const statNumbers = entry.target.querySelectorAll('.stat-number');
+				statNumbers.forEach(stat => {
+					if (!stat.classList.contains('animated')) {
+						stat.classList.add('animated');
+						animateCounter(stat as HTMLElement);
+					}
+				});
+				statsObserver.unobserve(entry.target);
+			}
+		});
+	}, { threshold: 0.5 });
+
+	const statsSection = document.querySelector('.stats');
+	if (statsSection) {
+		statsObserver.observe(statsSection);
+	}
+</script>
+
+<style>
+	.stats {
+		padding: 6rem 2rem;
+		background: transparent;
+		position: relative;
+	}
+
+	.stats-container {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.section-title {
+		font-size: 3rem;
+		text-align: center;
+		margin-bottom: 4rem;
+		background: linear-gradient(135deg, #ffffff 0%, #a8a8a8 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+	}
+
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+	}
+
+	.stat-card {
+		background: rgba(255, 255, 255, 0.05);
+		backdrop-filter: blur(10px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 16px;
+		padding: 2.5rem;
+		text-align: center;
+		transition: all 0.3s ease;
+	}
+
+	.stat-card:hover {
+		background: rgba(255, 255, 255, 0.08);
+		border-color: rgba(102, 126, 234, 0.4);
+		transform: translateY(-5px);
+		box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+	}
+
+	.stat-icon {
+		width: 60px;
+		height: 60px;
+		margin: 0 auto 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+		border-radius: 12px;
+		color: #667eea;
+	}
+
+	.stat-icon svg {
+		width: 32px;
+		height: 32px;
+	}
+
+	.stat-number {
+		font-size: 3rem;
+		font-weight: 700;
+		color: #ffffff;
+		margin-bottom: 0.5rem;
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.stat-label {
+		font-size: 1.1rem;
+		color: #b0b0b0;
+		font-weight: 500;
+	}
+
+	/* Light Theme */
+	:global([data-theme="light"]) .section-title {
+		background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	:global([data-theme="light"]) .stat-card {
+		background: rgba(0, 0, 0, 0.03);
+		border: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+	:global([data-theme="light"]) .stat-card:hover {
+		background: rgba(0, 0, 0, 0.05);
+		border-color: rgba(102, 126, 234, 0.3);
+		box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+	}
+
+	:global([data-theme="light"]) .stat-number {
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	:global([data-theme="light"]) .stat-label {
+		color: #444;
+	}
+
+	@media (max-width: 768px) {
+		.stats {
+			padding: 4rem 2rem;
+		}
+
+		.section-title {
+			font-size: 2rem;
+			margin-bottom: 2.5rem;
+		}
+
+		.stats-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1.5rem;
+		}
+
+		.stat-card {
+			padding: 2rem 1.5rem;
+		}
+
+		.stat-number {
+			font-size: 2.5rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.stats-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.stat-number {
+			font-size: 2rem;
+		}
+	}
+</style>
+

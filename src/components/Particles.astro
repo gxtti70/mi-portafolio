@@ -1,0 +1,141 @@
+---
+// Particles Background Effect
+---
+
+<canvas id="particles-canvas" class="particles-canvas"></canvas>
+
+<script>
+	const canvas = document.getElementById('particles-canvas') as HTMLCanvasElement;
+	if (!canvas) return;
+
+	const ctx = canvas.getContext('2d');
+	if (!ctx) return;
+
+	let particles: Array<{
+		x: number;
+		y: number;
+		vx: number;
+		vy: number;
+		radius: number;
+	}> = [];
+
+	function resizeCanvas() {
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+	}
+
+	function createParticles() {
+		const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+		particles = [];
+		
+		for (let i = 0; i < particleCount; i++) {
+			particles.push({
+				x: Math.random() * canvas.width,
+				y: Math.random() * canvas.height,
+				vx: (Math.random() - 0.5) * 0.5,
+				vy: (Math.random() - 0.5) * 0.5,
+				radius: Math.random() * 2 + 1
+			});
+		}
+	}
+
+	function drawParticles() {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		
+		const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+		const particleColor = isLight ? 'rgba(102, 126, 234, 0.3)' : 'rgba(102, 126, 234, 0.4)';
+		const lineColor = isLight ? 'rgba(102, 126, 234, 0.1)' : 'rgba(102, 126, 234, 0.15)';
+
+		// Dibujar partículas
+		particles.forEach(particle => {
+			ctx.beginPath();
+			ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+			ctx.fillStyle = particleColor;
+			ctx.fill();
+		});
+
+		// Dibujar líneas entre partículas cercanas
+		for (let i = 0; i < particles.length; i++) {
+			for (let j = i + 1; j < particles.length; j++) {
+				const dx = particles[i].x - particles[j].x;
+				const dy = particles[i].y - particles[j].y;
+				const distance = Math.sqrt(dx * dx + dy * dy);
+
+				if (distance < 120) {
+					ctx.beginPath();
+					ctx.moveTo(particles[i].x, particles[i].y);
+					ctx.lineTo(particles[j].x, particles[j].y);
+					ctx.strokeStyle = lineColor;
+					ctx.lineWidth = 0.5;
+					ctx.stroke();
+				}
+			}
+		}
+	}
+
+	function updateParticles() {
+		particles.forEach(particle => {
+			particle.x += particle.vx;
+			particle.y += particle.vy;
+
+			if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+			if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+
+			particle.x = Math.max(0, Math.min(canvas.width, particle.x));
+			particle.y = Math.max(0, Math.min(canvas.height, particle.y));
+		});
+	}
+
+	function animate() {
+		updateParticles();
+		drawParticles();
+		requestAnimationFrame(animate);
+	}
+
+	function init() {
+		resizeCanvas();
+		createParticles();
+		animate();
+	}
+
+	window.addEventListener('resize', () => {
+		resizeCanvas();
+		createParticles();
+	});
+
+	// Observar cambios de tema
+	const themeObserver = new MutationObserver(() => {
+		drawParticles();
+	});
+
+	themeObserver.observe(document.documentElement, {
+		attributes: true,
+		attributeFilter: ['data-theme']
+	});
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', init);
+	} else {
+		init();
+	}
+</script>
+
+<style>
+	.particles-canvas {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		pointer-events: none;
+		opacity: 0.6;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.particles-canvas {
+			display: none;
+		}
+	}
+</style>
+

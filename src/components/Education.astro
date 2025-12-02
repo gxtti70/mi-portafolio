@@ -1,0 +1,219 @@
+---
+// Education component
+---
+
+<section id="education" class="education">
+	<div class="education-container">
+		<h2 class="section-title fade-in" data-i18n="education.title">Educación</h2>
+		<div class="education-grid stagger-children">
+			<div class="education-card">
+				<div class="education-icon">
+					<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+					</svg>
+				</div>
+				<h3 class="education-degree" data-i18n="education.degree1">Técnico Auxiliar en Sistemas</h3>
+				<p class="education-institution" data-i18n="education.institution1">Politécnico de Antioquia</p>
+				<span class="education-date">2022 - 2023</span>
+				<p class="education-description" data-i18n="education.description1">Formación técnica en sistemas informáticos, soporte técnico y fundamentos de programación.</p>
+			</div>
+			<div class="education-card">
+				<div class="education-icon">
+					<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+					</svg>
+				</div>
+				<h3 class="education-degree" data-i18n="education.degree2">Desarrollo de Software y Análisis de Datos</h3>
+				<p class="education-institution" data-i18n="education.institution2">CENSA</p>
+				<span class="education-date">2024 - 2025</span>
+				<p class="education-description" data-i18n="education.description2">Programa especializado en desarrollo de software moderno y análisis de datos para la toma de decisiones empresariales.</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.education {
+		padding: 6rem 2rem;
+		background: transparent;
+		position: relative;
+	}
+
+	.education-container {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.section-title {
+		font-size: 3rem;
+		text-align: center;
+		margin-bottom: 4rem;
+		background: linear-gradient(135deg, #ffffff 0%, #a8a8a8 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+	}
+
+	.education-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+
+	.education-card {
+		background: rgba(255, 255, 255, 0.05);
+		backdrop-filter: blur(10px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 16px;
+		padding: 2.5rem;
+		text-align: center;
+		transition: all 0.3s ease;
+	}
+
+	.education-card:hover {
+		background: rgba(255, 255, 255, 0.08);
+		border-color: rgba(102, 126, 234, 0.4);
+		transform: translateY(-5px);
+		box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+	}
+
+	.education-icon {
+		width: 60px;
+		height: 60px;
+		margin: 0 auto 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+		border-radius: 12px;
+		color: #667eea;
+	}
+
+	.education-icon svg {
+		width: 32px;
+		height: 32px;
+	}
+
+	.education-degree {
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: #ffffff;
+		margin-bottom: 0.5rem;
+	}
+
+	.education-institution {
+		font-size: 1.1rem;
+		color: #667eea;
+		margin-bottom: 0.75rem;
+		font-weight: 500;
+	}
+
+	.education-date {
+		display: inline-block;
+		background: rgba(102, 126, 234, 0.2);
+		padding: 0.5rem 1rem;
+		border-radius: 8px;
+		border: 1px solid rgba(102, 126, 234, 0.3);
+		color: #b0b0b0;
+		font-size: 0.9rem;
+		margin-bottom: 1rem;
+	}
+
+	.education-description {
+		color: #b0b0b0;
+		line-height: 1.6;
+		margin-top: 1rem;
+	}
+
+	/* Light Theme */
+	:global([data-theme="light"]) .section-title {
+		background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	:global([data-theme="light"]) .education-card {
+		background: rgba(0, 0, 0, 0.03);
+		border: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+	:global([data-theme="light"]) .education-card:hover {
+		background: rgba(0, 0, 0, 0.05);
+		border-color: rgba(102, 126, 234, 0.3);
+		box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+	}
+
+	:global([data-theme="light"]) .education-degree {
+		color: #1a1a1a;
+	}
+
+	:global([data-theme="light"]) .education-date {
+		color: #555;
+		background: rgba(102, 126, 234, 0.1);
+		border: 1px solid rgba(102, 126, 234, 0.2);
+	}
+
+	:global([data-theme="light"]) .education-description {
+		color: #444;
+	}
+
+	@media (max-width: 768px) {
+		.education {
+			padding: 4rem 2rem;
+		}
+
+		.section-title {
+			font-size: 2rem;
+			margin-bottom: 2.5rem;
+		}
+
+		.education-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.education {
+			padding: 3rem 1.5rem;
+		}
+
+		.section-title {
+			font-size: 1.75rem;
+			margin-bottom: 2rem;
+		}
+
+		.education-card {
+			padding: 2rem 1.5rem;
+		}
+
+		.education-degree {
+			font-size: 1.25rem;
+		}
+
+		.education-institution {
+			font-size: 1rem;
+		}
+
+		.education-description {
+			font-size: 0.95rem;
+		}
+	}
+
+	@media (max-width: 375px) {
+		.education {
+			padding: 2.5rem 1rem;
+		}
+
+		.section-title {
+			font-size: 1.5rem;
+		}
+
+		.education-card {
+			padding: 1.5rem 1.25rem;
+		}
+	}
+</style>
+
