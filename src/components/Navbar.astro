@@ -1,6 +1,7 @@
 ---
 // Navbar component
 const baseUrl = import.meta.env.BASE_URL;
+const basePath = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 const homeUrl = baseUrl === '/' ? '/' : baseUrl.replace(/\/$/, '') || '/';
 ---
 
@@ -16,7 +17,7 @@ const homeUrl = baseUrl === '/' ? '/' : baseUrl.replace(/\/$/, '') || '/';
 			<li><a href={homeUrl} data-i18n="nav.home">Inicio</a></li>
 			<li><a href="#about" data-i18n="nav.about">Sobre mí</a></li>
 			<li><a href="#experience" data-i18n="nav.experience">Experiencia</a></li>
-			<li><a href={`${baseUrl}projects`} data-i18n="nav.projects">Proyectos</a></li>
+			<li><a href={`${basePath}projects`} data-i18n="nav.projects">Proyectos</a></li>
 			<li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
 		</ul>
 		<div class="language-selector">

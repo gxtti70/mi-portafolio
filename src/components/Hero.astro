@@ -1,6 +1,7 @@
 ---
 // Hero component
 const baseUrl = import.meta.env.BASE_URL;
+const basePath = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 ---
 
 <section class="hero" data-parallax="0.3">
@@ -27,9 +28,9 @@ const baseUrl = import.meta.env.BASE_URL;
 			</div>
 		</div>
 		<div class="hero-buttons">
-			<a href={`${baseUrl}projects`} class="btn btn-primary" data-i18n="hero.btnProjects">Ver Proyectos</a>
+			<a href={`${basePath}projects`} class="btn btn-primary" data-i18n="hero.btnProjects">Ver Proyectos</a>
 			<a href="#contact" class="btn btn-secondary" data-i18n="hero.btnContact">Contactar</a>
-			<a href={`${baseUrl}cv.pdf`} download="CV_Santiago_Munoz.pdf" class="btn btn-tertiary">
+			<a href={`${basePath}cv.pdf`} download="CV_Santiago_Munoz.pdf" class="btn btn-tertiary">
 				<svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px; margin-right: 8px;">
 					<path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
 				</svg>

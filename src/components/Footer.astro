@@ -1,6 +1,7 @@
 ---
 // Footer component
 const baseUrl = import.meta.env.BASE_URL;
+const basePath = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 const homeUrl = baseUrl === '/' ? '/' : baseUrl.replace(/\/$/, '') || '/';
 ---
 
@@ -16,7 +17,7 @@ const homeUrl = baseUrl === '/' ? '/' : baseUrl.replace(/\/$/, '') || '/';
 				<ul class="footer-links">
 					<li><a href={homeUrl}>Inicio</a></li>
 					<li><a href="#about">Sobre Mí</a></li>
-					<li><a href={`${baseUrl}projects`}>Proyectos</a></li>
+					<li><a href={`${basePath}projects`}>Proyectos</a></li>
 					<li><a href="#contact">Contacto</a></li>
 				</ul>
 			</div>
