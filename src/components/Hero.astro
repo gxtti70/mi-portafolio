@@ -10,16 +10,16 @@ const basePath = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 		<p class="hero-subtitle" data-i18n="hero.subtitle">Desarrollador Full Stack Junior especializado en crear soluciones tecnológicas innovadoras</p>
 		<div class="hero-tech">
 			<div class="tech-logo" title="AWS">
-				<img src={`${baseUrl}logos/aws.png`} alt="AWS" />
+				<img src={`${basePath}logos/aws.png`} alt="AWS" />
 			</div>
 			<div class="tech-logo" title="TypeScript">
-				<img src={`${baseUrl}logos/typescript.png`} alt="TypeScript" />
+				<img src={`${basePath}logos/typescript.png`} alt="TypeScript" />
 			</div>
 			<div class="tech-logo" title="Java">
-				<img src={`${baseUrl}logos/java.png`} alt="Java" />
+				<img src={`${basePath}logos/java.png`} alt="Java" />
 			</div>
 			<div class="tech-logo angular-logo" title="Angular">
-				<img src={`${baseUrl}logos/angular.png`} alt="Angular" />
+				<img src={`${basePath}logos/angular.png`} alt="Angular" />
 			</div>
 			<div class="tech-logo" title="GitHub">
 				<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -43,6 +43,8 @@ const basePath = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 <style>
 	.hero {
 		min-height: 100vh;
+		min-height: 100svh;
+		min-height: 100dvh;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -196,6 +198,7 @@ const basePath = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 		transition: all 0.3s ease;
 		position: relative;
 		overflow: hidden;
+		box-sizing: border-box;
 	}
 
 	.btn-primary {
@@ -312,7 +315,9 @@ const basePath = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 	@media (max-width: 768px) {
 		.hero {
 			padding: 1.5rem;
-			min-height: calc(100vh - 80px);
+			min-height: 100svh;
+			overflow: visible;
+			padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
 		}
 
 		.hero-title {
@@ -344,7 +349,9 @@ const basePath = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 	@media (max-width: 480px) {
 		.hero {
 			padding: 1rem;
-			min-height: calc(100vh - 70px);
+			min-height: 100svh;
+			overflow: visible;
+			padding-bottom: calc(1rem + env(safe-area-inset-bottom));
 		}
 
 		.hero-title {
